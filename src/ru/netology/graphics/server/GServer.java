@@ -1,18 +1,20 @@
-package ru.netology.graphics.server;
+package ru.netology.server;
+
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
-import ru.netology.graphics.image.TextGraphicsConverter;
+import ru.netology.graphics.server.TextGraphicsConverter;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
-import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
  * Сервер уже за вас написан, его трогать не надо :)
-*/
+ */
 public class GServer {
     public static final int PORT = 8888;
 
@@ -32,6 +34,11 @@ public class GServer {
         server.createContext("/", this::serveHtml);
         server.createContext("/convert", this::serveConvertion);
     }
+
+    public GServer(Object converter) {
+
+    }
+
 
     public void start() {
         System.out.println("Запускаем сервер на порту " + PORT);
